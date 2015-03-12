@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css">
+  <style>
+    .container {
+      display: flex;
+    }
+
+    .line-numbers {
+      padding-right: 0.5em;
+    }
+
+    .line-numbers > a {
+      color: #000;
+      display: block;
+      font-family: monospace;
+      text-align: right;
+      text-decoration: none;
+    }
+
+    .line-numbers > a.current {
+      color: orangered;
+      outline: none;
+    }
+
+    .line-numbers > a.current:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 100%;
+      width: 100vw;
+      height: 12px;
+      background: #ff9;
+      z-index: -1;
+    }
+
+    .the-code {
+      flex: 1;
+      margin: 0;
+    }
+
+    .hljs {
+      background: rgba(0,0,0,0.01);
+      padding: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="line-numbers">
+      <% 1.upto(@source.lines.size) do |line_number| %>
+        <a id="<%= line_number %>" href="#<%= line_number %>" class="line-number"><%= line_number %></a>
+      <% end %>
+    </div>
+    <pre class="the-code hljs javascript"><code><%= @source %></code></pre>
+  </div>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/languages/javascript.min.js"></script>
+  <script>
+    (function() {
+      hljs.initHighlightingOnLoad();
+
+      function selectCurrentLine() {
+        var hash = location.hash
+          , currentLineNumber = hash.replace(/#/, '');
+        Array.prototype.slice.call(document.querySelectorAll('.line-number')).forEach(function(lineNumber) {
+          lineNumber.classList.remove('current');
+        });
+        document.getElementById(currentLineNumber).classList.add('current');
+      }
+
+      if (location.hash) {
+        selectCurrentLine();
+      }
+      window.addEventListener('hashchange', selectCurrentLine);
+    }())
+  </script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+  <style>
+    .container {
+      margin: 0 auto;
+      width: 980px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>ESLint Report</h1>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Location</th>
+          <th>Severity</th>
+          <th>Rule</th>
+          <th>Message</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @warnings.each do |warning| %>
+          <%
+             row_class = case warning.severity
+             when :low
+               'success'
+             when :high
+               'warning'
+             else
+               ''
+             end
+          %>
+          <tr class="<%= row_class %>">
+            <td><%= link_to(
+                      "#{warning.line}:#{warning.column}",
+                      eslint_source_path(@filename, anchor: warning.line)
+                    ) %></td>
+            <td><%= warning.severity.to_s.capitalize %></td>
+            <td><%= link_to warning.rule_id, "http://eslint.org/docs/rules/#{warning.rule_id}.html" %></td>
+            <td><%= warning.message %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>
