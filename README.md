@@ -36,9 +36,9 @@ Path                         | Description
 `/eslint`                    | Optionally supply a filename parameter to analyze a file other than `application.js`, e.g.  `/eslint?filename=foo` to analyze foo.js.
 `/eslint/source/application` | Optionally replace `application` with the name of another JavaScript file, e.g.  `eslint/source/button_stuff` will show you `button_source.js`.
 
-![eslint-rails-web-source](https://cloud.githubusercontent.com/assets/324632/6671965/33d6819c-cbc6-11e4-9a64-30be84f20b96.png)
-
 ![eslint-rails-web](https://cloud.githubusercontent.com/assets/324632/6671966/33d8cc86-cbc6-11e4-904d-3379907c429d.png)
+
+![eslint-rails-web-source](https://cloud.githubusercontent.com/assets/324632/6671965/33d6819c-cbc6-11e4-9a64-30be84f20b96.png)
 
 # Authors
 
