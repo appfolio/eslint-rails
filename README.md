@@ -54,6 +54,6 @@ Path                         | Description
 [jon.kessler@appfolio.com]: mailto:jon.kessler@appfolio.com
 [MIT License]: http://www.opensource.org/licenses/MIT)
 
-[rake-eslint-rails-run]: https://cloud.githubusercontent.com/assets/324632/6671891/b5b92760-cbc5-11e4-8a3c-12c19ccfbb4d.png
+[rake-eslint-rails-run]: https://cloud.githubusercontent.com/assets/324632/6672146/9d1f278e-cbc7-11e4-9f56-5a4511d35921.png
 [eslint-rails-web-source]: https://cloud.githubusercontent.com/assets/324632/6671965/33d6819c-cbc6-11e4-9a64-30be84f20b96.png
 [eslint-rails-web]: https://cloud.githubusercontent.com/assets/324632/6671966/33d8cc86-cbc6-11e4-904d-3379907c429d.png
