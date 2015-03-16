@@ -1,4 +1,4 @@
-Copyright (c) 2015 Justin Force
+Copyright (c) 2015 AppFolio, Inc.
 
 MIT License
 

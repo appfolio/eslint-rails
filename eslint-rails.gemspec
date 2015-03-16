@@ -7,10 +7,10 @@ Gem::Specification.new do |spec|
   spec.name          = 'eslint-rails'
   spec.version       = ESLintRails::VERSION
   spec.authors       = ['Justin Force', 'Jon Kessler']
-  spec.email         = ['justin.force@gmail.com']
+  spec.email         = ['justin.force@appfolio.com', 'jon.kessler@appfolio.com']
   spec.summary       = %q{A Rails wrapper for ESLint.}
   spec.description   = spec.summary
-  spec.homepage      = ''
+  spec.homepage      = 'https://github.com/appfolio/eslint-rails'
   spec.license       = 'MIT'
 
   spec.files         = `git ls-files -z`.split("\x0")
