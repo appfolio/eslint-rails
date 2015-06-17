@@ -10,6 +10,10 @@ class EslintController < ActionController::Base
     @source = Rails.application.assets[@filename].to_s
   end
 
+  def config_file
+    render json: ESLintRails::Config.read(force_default: params[:force_default])
+  end
+
   private
 
   def set_filename
