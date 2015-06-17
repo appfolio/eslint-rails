@@ -21,20 +21,22 @@ rake eslint:run
 ```
 
 This will analyze `application.js`. Optionally, you can supply a filename to the
-task. To analyze `woop.js`, you would run
+task. To analyze `components/woop.js` and `utilities.js.coffee.erb` you would
+run (respectively):
 
 ```sh
-rake eslint:run[woop]
+rake eslint:run[components/woop]
+rake eslint:run[utilities]
 ```
 
 ### Web interface
 
 On non-production environments, visit these URLs on your application:
 
-Path                         | Description
----------------------------- | -------------------------------------------------
-`/eslint`                    | Optionally supply a filename parameter to analyze a file other than `application.js`, e.g.  `/eslint?filename=foo` to analyze foo.js.
-`/eslint/source/application` | Optionally replace `application` with the name of another JavaScript file, e.g.  `eslint/source/button_stuff` will show you `button_stuff.js`.
+Path                                  | Description
+------------------------------------- | -------------------------------------------------
+`/eslint`                             | Optionally supply a filename parameter to analyze a file other than `application.js`, e.g.  `/eslint?filename=foo` to analyze foo.js.
+`/eslint/source?filename=application` | Optionally replace `application` with the name of another JavaScript file, e.g.  `eslint/source?filename=button_stuff` can show you `button_stuff.js`, and `eslint/source?filename=components/buttons/icon_button` can show you `components/buttons/icon_button.js.coffee.erb`.
 
 ![eslint-rails-web](https://cloud.githubusercontent.com/assets/324632/6671966/33d8cc86-cbc6-11e4-904d-3379907c429d.png)
 
