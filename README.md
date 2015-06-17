@@ -34,7 +34,7 @@ On non-production environments, visit these URLs on your application:
 Path                         | Description
 ---------------------------- | -------------------------------------------------
 `/eslint`                    | Optionally supply a filename parameter to analyze a file other than `application.js`, e.g.  `/eslint?filename=foo` to analyze foo.js.
-`/eslint/source/application` | Optionally replace `application` with the name of another JavaScript file, e.g.  `eslint/source/button_stuff` will show you `button_source.js`.
+`/eslint/source/application` | Optionally replace `application` with the name of another JavaScript file, e.g.  `eslint/source/button_stuff` will show you `button_stuff.js`.
 
 ![eslint-rails-web](https://cloud.githubusercontent.com/assets/324632/6671966/33d8cc86-cbc6-11e4-904d-3379907c429d.png)
 
