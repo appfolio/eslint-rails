@@ -10,13 +10,12 @@ module ESLintRails
       file_content = Rails.application.assets[@filename].to_s
 
       eslint_js = Rails.application.assets['eslint'].to_s
-      config = ESLintRails::Engine.root.join('config/eslint.json').read
 
       warning_hashes = ExecJS.eval <<-JS
         function () {
           window = this;
           #{eslint_js};
-          return eslint.verify('#{escape_javascript file_content}', #{config});
+          return eslint.verify('#{escape_javascript file_content}', #{Config.read});
         }()
       JS
       warning_hashes.map{|hash| ESLintRails::Warning.new(hash)}

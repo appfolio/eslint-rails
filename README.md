@@ -10,6 +10,26 @@ Add this line to your application's Gemfile:
 gem 'eslint-rails'
 ```
 
+## Configuration
+
+To customize configuration, place an eslint config file in your app's
+`config/eslint.json`.
+
+You can print the configuration thusly:
+
+```sh
+# Print the configuration that we're using. If there's a custom configuration
+# present, print that; if not, print the default configuration.
+rake eslint:print_config
+
+# Or print the default configuration even if a custom one exists.
+rake eslint:print_config[true]
+```
+
+You can also retrieve the current eslint.json by visiting `/eslint/eslint.json`
+in your browser. To force retrieval of the default conguration, use
+`/eslint/eslint.json?force_default=true`.
+
 ## Usage
 
 ### CLI
