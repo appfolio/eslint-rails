@@ -1,3 +1,4 @@
+require 'active_support/core_ext/string/strip'
 require 'colorize'
 
 module ESLintRails
