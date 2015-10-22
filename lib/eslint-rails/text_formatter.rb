@@ -5,7 +5,7 @@ module ESLintRails
   class TextFormatter
 
     WARNING_TEMPLATE = <<-TEXT.strip_heredoc
-      <%= line %>,<%= column %> <%= severity %>! [<%= rule_id %>] <%= message %>
+      <%= line %>,<%= column %> <%= severity %>! [<%= rule_id %>] <%= message %> | <%= link %>
     TEXT
 
     def initialize(warnings)

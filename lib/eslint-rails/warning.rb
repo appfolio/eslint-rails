@@ -1,6 +1,6 @@
 module ESLintRails
   class Warning
-    attr_reader :rule_id, :message, :line, :column, :node_type
+    attr_reader :rule_id, :message, :line, :column, :node_type, :link
 
     SEVERITY = [ :low, :high ].freeze
     private_constant :SEVERITY
@@ -12,6 +12,7 @@ module ESLintRails
       @line = warning_hash['line']
       @column = warning_hash['column']
       @node_type = warning_hash['nodeType']
+      @link = "http://eslint.org/docs/rules/#{@rule_id}"
     end
 
     def severity
