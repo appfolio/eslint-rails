@@ -58,9 +58,100 @@ Path                                  | Description
 `/eslint`                             | Optionally supply a filename parameter to analyze a file other than `application.js`, e.g.  `/eslint?filename=foo` to analyze foo.js.
 `/eslint/source?filename=application` | Optionally replace `application` with the name of another JavaScript file, e.g.  `eslint/source?filename=button_stuff` can show you `button_stuff.js`, and `eslint/source?filename=components/buttons/icon_button` can show you `components/buttons/icon_button.js.coffee.erb`.
 
-![eslint-rails-web](https://cloud.githubusercontent.com/assets/324632/6671966/33d8cc86-cbc6-11e4-904d-3379907c429d.png)
+![eslint-rails-web][]
 
-![eslint-rails-web-source](https://cloud.githubusercontent.com/assets/324632/6671965/33d6819c-cbc6-11e4-9a64-30be84f20b96.png)
+![eslint-rails-web-source][]
+
+# Contributing
+
+It's easiest to contribute by forking the repo and creating a pull request. For
+help with this, see this [helpful article][fork a repo].
+
+For all of the example shell commands below, I'm going to assume that you've set
+these two variables, so go ahead and customize these and set them before you
+start.
+
+```sh
+ESLINT=~/src/eslint
+ESLINT_RAILS=~/src/eslint-rails
+```
+
+## Cloning the repository
+
+```sh
+git clone https://github.com/appfolio/eslint-rails $ESLINT_RAILS
+```
+
+## Updating ESLint version
+
+### Summary
+
+1. [Clone the ESLint repository](#clone-the-eslint-repository)
+2. [Install dependencies](#install-dependencies)
+3. [Render `eslint.js`](#render-eslintjs)
+4. [Copy `eslint.js` into `eslint-rails`](#copy-eslintjs-into-eslint-rails)
+5. [Update the file in git](#update-the-file-in-git)
+6. [Commit, push, and create a pull request](#commit-push-and-create-a-pull-request)
+
+### Step-by-step instructions
+
+First, let's assign some variables that we'll reuse. Just set these to match
+your local environment.
+
+#### Clone the [ESLint repository][]
+
+I would recommend only trying this with a released version unless you have a
+good reason to. In this example, I'm going to check out v1.10.1 and work with
+that.
+
+```sh
+git clone https://github.com/eslint/eslint $ESLINT
+cd $ESLINT
+git checkout v1.10.1
+```
+
+#### Install dependencies
+
+```sh
+cd $ESLINT
+npm install
+```
+
+#### Render `eslint.js`
+
+```sh
+cd $ESLINT
+shjs Makefile.js browserify
+```
+
+#### Copy `eslint.js` into `eslint-rails`
+
+```sh
+# Assuming you cloned eslint into a repository next to eslint-rails
+cp $ESLINT/build/eslint.js $ESLINT_RAILS/vendor/assets/javascripts/eslint.js
+```
+
+#### Update the file in git
+
+```sh
+cd $ESLINT_RAILS
+git add vendor/assets/javascripts/eslint.js
+```
+
+#### Commit, push, and create a pull request
+
+The details of how to create your own branch, commit, push, and create a pull
+request are outside the scope of this README. If you need help with this part,
+here's a [helpful article][fork a repo]. This is the gist.
+
+```sh
+cd $ESLINT_RAILS
+# Make your changes
+git add :/
+git commit
+git push origin master
+# Open a pull request
+```
 
 # Authors
 
@@ -72,6 +163,8 @@ Path                                  | Description
 [MIT License][].
 
 [ESLint]: http://eslint.org/
+[fork a repo]: https://help.github.com/articles/fork-a-repo/
+[ESLint repository]: https://github.com/eslint/eslint
 [justin.force@appfolio.com]: mailto:justin.force@appfolio.com
 [jon.kessler@appfolio.com]: mailto:jon.kessler@appfolio.com
 [MIT License]: http://www.opensource.org/licenses/MIT)
