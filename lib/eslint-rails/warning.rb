@@ -6,7 +6,7 @@ module ESLintRails
     private_constant :SEVERITY
 
     def initialize(warning_hash)
-      @rule_id = warning_hash['ruleId']
+      @rule_id = warning_hash['ruleId'] || "unexpected error"
       @severity = warning_hash['severity']
       @message = warning_hash['message']
       @line = warning_hash['line']
