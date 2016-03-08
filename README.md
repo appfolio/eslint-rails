@@ -95,8 +95,7 @@ git clone https://github.com/appfolio/eslint-rails $ESLINT_RAILS
 
 ### Step-by-step instructions
 
-First, let's assign some variables that we'll reuse. Just set these to match
-your local environment.
+First, make sure you set the environment variables [as suggested above](#contributing).
 
 #### Clone the [ESLint repository][]
 
