@@ -49,6 +49,20 @@ rake eslint:run[components/woop]
 rake eslint:run[utilities]
 ```
 
+You can also lint all JavaScript files for a given directory.
+
+```sh
+rake eslint:run_dir
+```
+
+This will analyze all JavaScript files in the 'app' directory. Optionally, you can supply a specific directory to the task. To anaylze all JS files in the `components` directory, you would run:
+
+```sh
+rake eslint:run_dir[components]
+```
+
+_Keep in mind that this will lint any file with a `.js` extension (including JSX, JSON, JS.ERB, etc.)_
+
 ### Web interface
 
 On non-production environments, visit these URLs on your application:
