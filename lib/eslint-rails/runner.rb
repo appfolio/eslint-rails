@@ -4,8 +4,8 @@ module ESLintRails
   class Runner
     include ActionView::Helpers::JavaScriptHelper
 
-    def initialize(filename)
-      @filename = filename || 'all'
+    def initialize(file)
+      @file = normalize_infile(file)
     end
 
     def run
@@ -20,16 +20,19 @@ module ESLintRails
     
     private
     
+    def normalize_infile(file)
+      file = file.to_s.gsub(/^app\/assets\/javascripts\//, '') # Remove beginning of asset path
+      file = Pathname.new("#{Dir.pwd}/app/assets/javascripts/#{file}") # Ensure path is absolute
+      file = Pathname.new("#{file}.js") if !file.directory? && file.extname.empty? # Make sure it has an extension
+      file
+    end
+    
     def assets
-      all_assets = Rails.application.assets
+      all_js_assets = Rails.application.assets.each_file.to_a.select { |pn| pn.extname == '.js' }
+      
+      assets = all_js_assets.select{|a| is_descendant?(@file, a)}
 
-      assets = case @filename
-               when 'all'
-                 all_assets.each_file.to_a.select { |pn| pn.extname == '.js' }
-               else
-                 [all_assets[@filename]]
-               end
-      assets.reject!{|a| a.to_s =~ /eslint.js|vendor|gems|min.js|editorial/ }
+      assets.reject{|a| a.to_s =~ /eslint.js|vendor|gems|min.js|editorial/ }
     end
     
     def eslint_js
@@ -68,6 +71,13 @@ module ESLintRails
     
     def file_severity(warnings)
       warnings.map(&:severity).uniq.sort.first
+    end
+    
+    def is_descendant?(a, b)
+      a_list = a.to_s.split('/')
+      b_list = b.to_s.split('/')
+
+      b_list[0..a_list.size-1] == a_list
     end
   end
 end
