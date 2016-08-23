@@ -7,6 +7,7 @@ namespace :eslint do
   desc %{Run ESLint against the specified JavaScript file and report warnings (default is 'application')}
   task :run, [:filename] => :environment do |_, args|
     warnings = ESLintRails::Runner.new(args[:filename]).run
+    puts
 
     if warnings.empty?
       puts 'All good! :)'.green
