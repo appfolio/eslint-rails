@@ -36,17 +36,18 @@ in your browser. To force retrieval of the default conguration, use
 
 ![rake-eslint-rails-run][]
 
+This will analyze all of the javascript files in the project:
 ```sh
 rake eslint:run
 ```
 
-This will analyze `application.js`. Optionally, you can supply a filename to the
-task. To analyze `components/woop.js` and `utilities.js.coffee.erb` you would
-run (respectively):
+Optionally, you can supply a filename to the task. To analyze `app/assets/javascripts/components/utilities.js`, you can run any of the following:
 
 ```sh
-rake eslint:run[components/woop]
-rake eslint:run[utilities]
+rake eslint:run[components/utilities]
+rake eslint:run[components/utilities.js]
+rake eslint:run[app/assets/javascripts/components/utilities]
+rake eslint:run[app/assets/javascripts/components/utilities.js]
 ```
 
 ### Web interface
