@@ -7,7 +7,9 @@ module ESLintRails
     end
 
     def run
-      file_content = Rails.application.assets[@filename].to_s
+      asset = Rails.application.assets[@filename]
+      relative_path = asset.pathname.relative_path_from(Pathname.new(Dir.pwd))
+      file_content = asset.to_s
 
       eslint_js = Rails.application.assets['eslint'].to_s
 
@@ -18,7 +20,7 @@ module ESLintRails
           return eslint.verify('#{escape_javascript file_content}', #{Config.read});
         }()
       JS
-      warning_hashes.map{|hash| ESLintRails::Warning.new(hash)}
+      warning_hashes.map{|hash| ESLintRails::Warning.new(relative_path, hash)}
     end
   end
 end
