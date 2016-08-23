@@ -9,9 +9,9 @@ module ESLintRails
     end
 
     def format
-      max_line_column_length = @warnings.map { |warning| warning.location.size }.max
-      max_rule_id_length = @warnings.map { |warning| warning.rule_id.size }.max
-      max_message_length = @warnings.map { |warning| warning.message.size }.max
+      max_line_column_length = max_length_of_attribute(:location)
+      max_rule_id_length = max_length_of_attribute(:rule_id)
+      max_message_length = max_length_of_attribute(:message)
       @warnings.each do |warning|
         message = [
           warning.location.ljust(max_line_column_length + 1),
@@ -22,9 +22,9 @@ module ESLintRails
         colorized_message =
           case warning.severity
             when :low
-              message.green
-            when :high
               message.yellow
+            when :high
+              message.red
             else
               raise 'BULLSHIT'
           end
@@ -32,6 +32,12 @@ module ESLintRails
       end
 
       puts "#{@warnings.size} warning(s) found."
+    end
+    
+    private
+  
+    def max_length_of_attribute(attr_key)
+      @warnings.map { |warning| warning.send(attr_key).size }.max
     end
   end
 end
