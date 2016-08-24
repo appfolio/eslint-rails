@@ -62,7 +62,7 @@ module ESLintRails
         function () {
           window = this;
           #{eslint_js};
-          #{react_plugin_js};
+          #{eslint_plugin_js};
           return eslint.verify('#{escape_javascript(file_content)}', #{Config.read});
         }()
       JS
