@@ -5,7 +5,7 @@ module ESLintRails
   class TextFormatter
 
     WARNING_TEMPLATE = <<-TEXT.strip_heredoc
-      <%= line %>,<%= column %> <%= severity %>! [<%= rule_id %>] <%= message %>
+      <%= line %>,<%= column %> <%= severity %>! [<%= rule_id %>] <%= message %> | <%= link %>
     TEXT
 
     def initialize(warnings)
@@ -21,7 +21,8 @@ module ESLintRails
           "#{warning.line}:#{warning.column}".ljust(max_line_column_length + 1),
           warning.severity.to_s.ljust(6),
           warning.rule_id.ljust(max_rule_id_length),
-          warning.message.ljust(max_message_length)
+          warning.message.ljust(max_message_length),
+          warning.link
         ].join(" ")
         colorized_message =
           case warning.severity
