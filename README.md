@@ -37,11 +37,18 @@ in your browser. To force retrieval of the default conguration, use
 ![rake-eslint-rails-run][]
 
 This will analyze all of the javascript files in the project:
+
+```sh
+rake eslint:run_all
+```
+
+Or you can run it on a single file. This will analyze `application.js`:
+
 ```sh
 rake eslint:run
 ```
 
-Optionally, you can supply a filename to the task. To analyze `app/assets/javascripts/components/utilities.js`, you can run any of the following:
+Or, you can supply a filename to the task, using several different formats, and it will lint just that file. For example, to analyze `app/assets/javascripts/components/utilities.js`, you can run any of the following:
 
 ```sh
 rake eslint:run[components/utilities]
