@@ -21,6 +21,7 @@ namespace :eslint do
     run_and_print_results(args[:filename] || 'application')
   end
 
+  desc 'Run ESLint against all project javascript files and report warnings'
   task run_all: :environment do |_, args|
     run_and_print_results(nil) # Run all
   end
