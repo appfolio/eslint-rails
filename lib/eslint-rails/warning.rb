@@ -1,11 +1,12 @@
 module ESLintRails
   class Warning
-    attr_reader :rule_id, :message, :line, :column, :node_type
+    attr_reader :filename, :rule_id, :message, :line, :column, :node_type
 
     SEVERITY = [ :low, :high ].freeze
     private_constant :SEVERITY
 
-    def initialize(warning_hash)
+    def initialize(filename, warning_hash)
+      @filename = filename
       @rule_id = warning_hash['ruleId'] || "unexpected error"
       @severity = warning_hash['severity']
       @message = warning_hash['message']
@@ -16,6 +17,10 @@ module ESLintRails
 
     def severity
       SEVERITY[@severity-1]
+    end
+
+    def location
+      "#{filename}:#{line}:#{column}"
     end
   end
 end
