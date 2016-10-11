@@ -1,6 +1,6 @@
 module ESLintRails
   class Warning
-    attr_reader :filename, :message, :line, :column, :node_type
+    attr_reader :filename, :line, :column, :node_type
 
     SEVERITY = [ :low, :high ].freeze
     private_constant :SEVERITY
@@ -22,13 +22,13 @@ module ESLintRails
     def location
       "#{filename}:#{line}:#{column}"
     end
-    
+
     def rule_id
-      @rule_id || "N/A"
+      @rule_id || 'N/A'
     end
-    
+
     def message
-      @message || "N/A"
+      @message || 'N/A'
     end
   end
 end

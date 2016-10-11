@@ -21,21 +21,21 @@ module ESLintRails
         ].join(" ")
         colorized_message =
           case warning.severity
-            when :low
-              message.yellow
-            when :high
-              message.red
-            else
-              raise 'BULLSHIT'
+          when :low
+            message.green
+          when :high
+            message.yellow
+          else
+            raise 'BULLSHIT'
           end
         puts colorized_message
       end
 
       puts "#{@warnings.size} warning(s) found."
     end
-    
+
     private
-  
+
     def max_length_of_attribute(attr_key)
       @warnings.map { |warning| warning.send(attr_key).size }.max
     end

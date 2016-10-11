@@ -53,10 +53,6 @@ module ESLintRails
       JSON.parse(Config.read)['plugins'] || []
     end
 
-    def react_plugin_js
-      @react_plugin_js ||= Rails.application.assets['plugins/eslint-plugin-react'].to_s
-    end
-
     def warning_hashes(file_content)
       ExecJS.eval <<-JS
         function () {
