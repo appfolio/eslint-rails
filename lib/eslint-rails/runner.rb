@@ -30,7 +30,9 @@ module ESLintRails
     end
 
     def assets
-      all_js_assets = Rails.application.assets.each_file.to_a.select { |pn| JAVASCRIPT_EXTENSIONS.include?(pn.extname) }
+      all_js_assets = Rails.application.assets.each_file.to_a.map { |path| Pathname.new(path) }.select do |asset|
+        JAVASCRIPT_EXTENSIONS.include?(asset.extname)
+      end
 
       assets = all_js_assets.select{|a| is_descendant?(@file, a)}
 
