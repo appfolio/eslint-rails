@@ -30,8 +30,21 @@ module ESLintRails
           end
         puts colorized_message
       end
-
       puts "#{@warnings.size} warning(s) found."
+    end
+
+    def format_summary
+      max_count_length = max_length_of_attribute(:count)
+      @warnings.each do |warning|
+        message = [
+            warning[:count].to_s.ljust(max_count_length + 1),
+            warning[:item],
+        ].join(' ')
+        puts message
+      end
+      total = @warnings.inject(0) {|sum, hash| sum + hash[:count]}
+      puts '--'
+      puts "#{total} warning(s) found."
     end
 
     private
