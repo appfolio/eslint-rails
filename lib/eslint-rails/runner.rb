@@ -5,6 +5,7 @@ module ESLintRails
     include ActionView::Helpers::JavaScriptHelper
 
     JAVASCRIPT_EXTENSIONS = %w(.js .jsx)
+    SUMMARY_FILTERS = %w(filename warning)
 
     def initialize(file)
       @file = normalize_infile(file)
@@ -20,6 +21,30 @@ module ESLintRails
       warnings.flatten
     end
 
+    def summary(group_by: 'filename')
+      raise "Unknown filter. Accepted values: #{SUMMARY_FILTERS.join(', ')}" unless SUMMARY_FILTERS.include?(group_by)
+      results = []
+      assets.map do |asset|
+        file_content = asset.read
+        if group_by == 'filename'
+          results << { item: asset.relative_path_from(Pathname.new(Dir.pwd)), count: warning_hashes(file_content).count }
+        else
+          file_warnings_by_rule = warning_hashes(file_content).group_by { |w| w['ruleId'] }.values
+          file_warnings_by_rule.map do |a|
+            # When rule ID is nil set type to +UnknownError+
+            warning_type = a.first['ruleId'] ? "#{a.first['nodeType']}/#{a.first['ruleId']}" : 'UnexpectedError'
+            warning = results.find { |r| r[:item] == warning_type }
+            if warning
+              warning[:count] += a.size
+            else
+              results << { item: warning_type, count: a.size }
+            end
+          end
+        end
+      end
+      results.sort_by { |r| -r[:count] }
+    end
+    
     private
 
     def normalize_infile(file)

@@ -27,7 +27,7 @@ rake eslint:print_config[true]
 ```
 
 You can also retrieve the current eslint.json by visiting `/eslint/eslint.json`
-in your browser. To force retrieval of the default conguration, use
+in your browser. To force retrieval of the default configuration, use
 `/eslint/eslint.json?force_default=true`.
 
 ## Usage
@@ -48,13 +48,49 @@ Or you can run it on a single file. This will analyze `application.js`:
 rake eslint:run
 ```
 
-Or, you can supply a filename to the task, using several different formats, and it will lint just that file. For example, to analyze `app/assets/javascripts/components/utilities.js`, you can run any of the following:
+Or, you can supply a filename to the task, using several different formats, 
+and it will lint just that file. For example, to analyze 
+`app/assets/javascripts/components/utilities.js`, you can run any of the following:
 
 ```sh
 rake eslint:run[components/utilities]
 rake eslint:run[components/utilities.js]
 rake eslint:run[app/assets/javascripts/components/utilities]
 rake eslint:run[app/assets/javascripts/components/utilities.js]
+```
+
+###### Summaries
+
+This will analyze all of the javascript files in the project and return a 
+summary of warnings based on the `group_by` filter parameter:
+
+```sh
+rake eslint:summary[group_by]
+```
+
+Available `group_by` filters: 
+
+- `filename` - displays number of warnings occurred per file
+
+- `warning` - displays number of warnings occurred per assets
+
+
+Or you can get a summary of the warnings on a single file. This will show 
+the summary for `application.js`:
+ 
+```sh
+rake eslint:file_summary
+```
+
+Or, you can supply a filename to the task, using several different formats, 
+and it will lint just that file. For example, to analyze 
+`app/assets/javascripts/components/utilities.js`, you can run any of the following:
+
+```sh
+rake eslint:file_summary[components/utilities]
+rake eslint:file_summary[components/utilities.js]
+rake eslint:file_summary[app/assets/javascripts/components/utilities]
+rake eslint:file_summary[app/assets/javascripts/components/utilities.js]
 ```
 
 ### Web interface
