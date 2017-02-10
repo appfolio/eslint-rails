@@ -1,6 +1,10 @@
 # eslint-rails
 
-Run [ESLint][] against your Rails repo.
+Run [ESLint][] against your Rails repo. The supported javascript file extensions are the following:
+
+- _.js_
+- _.jsx_
+- _.es6_
 
 ## Installation
 
