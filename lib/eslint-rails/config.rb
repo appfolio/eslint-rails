@@ -10,7 +10,7 @@ module ESLintRails
     CONFIG_PATH = 'config/eslint.json'
     private_constant :CONFIG_PATH
 
-    def initialize(force_default:)
+    def initialize(force_default: raise(ArgumentError, 'force_default is required'))
       @force_default = force_default
       @custom_file   = Rails.root.join(CONFIG_PATH)
       @default_file  = ESLintRails::Engine.root.join(CONFIG_PATH)
