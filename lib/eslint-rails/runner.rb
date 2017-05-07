@@ -4,7 +4,7 @@ module ESLintRails
   class Runner
     include ActionView::Helpers::JavaScriptHelper
 
-    JAVASCRIPT_EXTENSIONS = %w(.js .jsx)
+    JAVASCRIPT_EXTENSIONS = %w(.js .jsx .es6)
 
     def initialize(file)
       @file = normalize_infile(file)
