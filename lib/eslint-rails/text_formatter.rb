@@ -22,9 +22,9 @@ module ESLintRails
         colorized_message =
           case warning.severity
           when :low
-            message.green
-          when :high
             message.yellow
+          when :high
+            message.red
           else
             raise 'BULLSHIT'
           end
