@@ -1,6 +1,6 @@
 class EslintController < ActionController::Base
 
-  before_filter :set_filename
+  before_action :set_filename
 
   def show
     @warnings = ESLintRails::Runner.new(@filename).run
