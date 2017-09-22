@@ -2,6 +2,9 @@ module ESLintRails
   class Config
 
     def self.read(force_default: false)
+      # explicitly checking for nil incase the user passed in a nil value
+      # which would raise an error in #initialize
+      force_default = false if force_default.nil?
       self.new(force_default: force_default).send(:read)
     end
 
