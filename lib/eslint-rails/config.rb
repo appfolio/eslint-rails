@@ -11,9 +11,7 @@ module ESLintRails
     private_constant :CONFIG_PATH
 
     def initialize(force_default: nil)
-      raise(ArgumentError, 'force_default is required') if force_default.nil?
-
-      @force_default = force_default
+      @force_default = force_default == 'true'
       @custom_file   = Rails.root.join(CONFIG_PATH)
       @default_file  = ESLintRails::Engine.root.join(CONFIG_PATH)
     end

@@ -15,8 +15,6 @@ module ESLintRails
         generate_warnings(asset).tap { |warnings| output_progress(warnings) }
       end
 
-      puts
-
       warnings.flatten
     end
 
@@ -61,7 +59,7 @@ module ESLintRails
           window = this;
           #{eslint_js};
           #{eslint_plugin_js};
-          return eslint.verify('#{escape_javascript(file_content)}', #{Config.read});
+          return new eslint().verify('#{escape_javascript(file_content)}', #{Config.read});
         }()
       JS
     end
