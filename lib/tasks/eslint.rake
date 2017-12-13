@@ -1,4 +1,4 @@
-ENV['EXECJS_RUNTIME'] = 'RubyRacer'
+ENV['EXECJS_RUNTIME'] ||= 'RubyRacer'
 
 require 'eslint-rails'
 
